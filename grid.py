@@ -5,47 +5,95 @@ class Grid:
 
     matrix = []
     selected = {"x": 0, "y": 0}
+    pos = {"x": 0, "y": 0} 
     subgrid = []
-    displace_x = 0
-    displace_y = 0
+    displacement = {"x": 0, "y": 0} 
+    max_rows = 0
+    max_cols = 0
+    sheet = None
+
+    log = open("log", "w")
 
     def load_grid(self, sheet):
+        self.sheet = sheet
         for rx in range(sheet.nrows):
             row = []
             for cx in range(sheet.ncols):
                 row.append(sheet.cell_value(rowx=rx, colx=cx))
             self.matrix.append(row)
-        self.load_subgrid()
+        self.calc_subgrid()
+
+    def clear(self):
+        self.subgrid = []
     
-    def load_subgrid(self):
+    def calc_subgrid(self):
         rows, columns = os.popen('stty size', 'r').read().split()
         rows, columns = int(rows), int(columns)
-        max_rows = min(math.floor(rows/2), len(self.matrix)*2) - 2
-        max_cols = min(int(math.floor(columns / 20)), len(self.matrix[0]))
 
-        #for j in range(self.displace_y, max_rows + self.displace_y):
-        #    self.subgrid[j].append(self.matrix[j][self.displace_x:max_cols + self.displace_x])
+        self.max_rows = min(math.floor(rows/2), len(self.matrix)*2) - 2
+        self.max_cols = min(int(math.floor(columns / 20)), len(self.matrix[0]))
 
-    def displace_sub_grid_left(self, n):
-        self.displace_x = n
-        self.load_subgrid()
+        self.log.write("max_rows  " + str(self.max_rows) + "\n")
+        self.log.write("max_cols  " + str(self.max_cols) + "\n")
 
-    def displace_sub_grid_up(self, n):
-        self.displace_y = n
-        self.load_subgrid()
+        self.clear()
+
+        max_pos_y = (self.max_rows - 1) + self.displacement["y"]
+        max_pos_x = (self.max_cols - 1) + self.displacement["x"]
+
+        self.log.write(" self.matrix " + str(len(self.matrix)) + "\n")
+        self.log.write(" self.matrix[0] " + str(len(self.matrix[0])) + "\n")
+ 
+        for j in range(self.displacement["y"], min(max_pos_y, (self.sheet.nrows- 1))):
+            self.subgrid.append(self.matrix[j][self.displacement["x"]:max_pos_x])
+
+    def displace_x(self, increment):
+        
+        new_value = self.displacement["x"] + increment
+        self.log.write("displacing x " + str(new_value) + "\n")
+ 
+        if (new_value <= (self.max_cols - 1) and new_value >= 0):
+            self.log.write("displaced x to " + str(new_value) + "\n")
+            self.displacement["x"] = new_value
+        self.calc_subgrid()
+
+    def displace_y(self, increment):
+        self.log.write("displacing y\n")
+        new_value = self.displacement["y"] + increment
+        if (new_value < (len(self.matrix) - 1) and new_value > 0):
+            self.displacement["y"] = new_value
+        self.calc_subgrid()
 
     def move_right(self):
-        #if (self.selected["x"] > len(self.subgrid[0])):
-        #    self.displace_sub_grid_left(len(self.subgrid[0]) - self.selected["x"])
+        new_pos_x = min(self.pos["x"] + 1, (self.max_cols-2)) 
+        self.log.write(str(self.pos["x"]) + " -> " + str(new_pos_x) + "\n")
+        if new_pos_x == self.pos["x"]:
+            self.displace_x(1) 
+        self.pos["x"] = new_pos_x
         self.selected["x"] += 1
     
     def move_left(self):
+        new_pos_x =  max(0, self.pos["x"] - 1)
+        if new_pos_x == self.pos["x"]:
+            self.displace_x(-1) 
+        self.pos["x"] = new_pos_x
         self.selected["x"] -= 1
     
-    def move_up(self):
-        #if (self.selected["y"] > len(self.subgrid)):
-        #    self.displace_sub_grid_up(len(self.subgrid) - self.selected["y"])
+    def move_up(self): 
+        new_pos_y = max(0, self.pos["y"] - 1)
+        if new_pos_y == self.pos["y"]:
+            self.displace_y(-1) 
+        self.pos["y"] = new_pos_y
         self.selected["y"] -= 1
 
     def move_down(self):
+        new_pos_y = min(self.pos["y"] + 1, (self.max_rows-2))
+        if new_pos_y == self.pos["y"]:
+            self.displace_y(1) 
+        self.pos["y"] = new_pos_y
         self.selected["y"] += 1
+
+
+
+        #if (self.selected["x"] > len(self.subgrid[0])):
+        #    self.displace_sub_grid_left(len(self.subgrid[0]) - self.selected["x"])

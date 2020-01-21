@@ -16,4 +16,4 @@ class XlsCli:
 
     def render(self):
         self.frame.render()
-        self.frame.loop()
+        self.frame.loop()   

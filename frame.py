@@ -49,23 +49,22 @@ class Frame:
         return ansi.bg(title.center(self.width, " "), 28)
 
     def draw_grid(self):
-        rows, columns = os.popen('stty size', 'r').read().split()
-        rows, columns = int(rows), int(columns)
 
-        max_rows = min(math.floor(rows/2), len(self.grid.matrix)*2) - 2
-        max_cols = min(int(math.floor(columns / 20)), len(self.grid.matrix[0]))
+        grid_to_string = "-" * 22 * self.grid.max_cols + "\n"
 
-        grid_to_string = "-" * 22 * max_cols + "\n"
-
-        for j in range(0, max_rows):
+        for j in range(0, (len(self.grid.subgrid) )):
             row = []
-            for i in range(0, max_cols):
-                text = "{:<20}".format(" " + str(self.grid.matrix[j][i]))
-                if (j == self.grid.selected["y"] and i == self.grid.selected["x"]):
+            for i in range(0, (len(self.grid.subgrid[0]) )):
+                text = "{:<20}".format(" " + str(self.grid.subgrid[j][i]))
+                if (j == self.grid.pos["y"] and i == self.grid.pos["x"]):
                     text = ansi.bg(text, 8)
                 row.append(text)
-            line_separator = "-" * 22 * max_cols
+            line_separator = "-" * 22 * self.grid.max_cols
             grid_to_string += "%s\n%s\n" %("|".join(row), line_separator)
+        
+
+        
+        #grid_to_string += max(0, (self.grid.sheet.nrows - self.grid.max_rows)) * "\n"
 
         return grid_to_string
      

@@ -1,0 +1,23 @@
+max_rows  9
+max_cols  7
+ self.matrix 13
+ self.matrix[0] 7
+0 -> 1
+1 -> 2
+2 -> 3
+3 -> 4
+4 -> 5
+5 -> 5
+displacing x 1
+displaced x to 1
+max_rows  9
+max_cols  7
+ self.matrix 13
+ self.matrix[0] 7
+5 -> 5
+displacing x 2
+displaced x to 2
+max_rows  9
+max_cols  7
+ self.matrix 13
+ self.matrix[0] 7
