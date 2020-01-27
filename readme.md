@@ -15,3 +15,11 @@ It is a simple python package to explore xls files in the terminal
 ```python3
 pip3 install xls-cli
 ```
+
+## How to use?
+
+Just running 
+
+```
+xls-cli your_file_path.xls
+```
