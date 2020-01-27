@@ -42,9 +42,9 @@ class Grid:
 
     def displace_x(self, increment):
         new_value = self.displacement["x"] + increment  
- 
+
         if (new_value <= (self.max_cols - 1) and new_value >= 0):s
-            self.displacement["x"] = new_value
+            sself.displacement["x"] = new_value
         self.calc_subgrid()
 
     def displace_y(self, increment):
