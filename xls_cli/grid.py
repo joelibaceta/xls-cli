@@ -12,8 +12,6 @@ class Grid:
     max_cols = 0
     sheet = None
 
-    log = open("log", "w")
-
     def load_grid(self, sheet):
         self.sheet = sheet
         for rx in range(sheet.nrows):
@@ -43,8 +41,8 @@ class Grid:
     def displace_x(self, increment):
         new_value = self.displacement["x"] + increment  
 
-        if (new_value <= (self.max_cols - 1) and new_value >= 0):s
-            sself.displacement["x"] = new_value
+        if (new_value <= (self.max_cols - 1) and new_value >= 0):
+            self.displacement["x"] = new_value
         self.calc_subgrid()
 
     def displace_y(self, increment):
