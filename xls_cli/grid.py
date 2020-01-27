@@ -17,7 +17,9 @@ class Grid:
         for rx in range(sheet.nrows):
             row = []
             for cx in range(sheet.ncols):
-                row.append(sheet.cell_value(rowx=rx, colx=cx))
+                cell_value = str(sheet.cell_value(rowx=rx, colx=cx))
+                data = cell_value[:17] + (cell_value[17:] and '..')
+                row.append(data)
             self.matrix.append(row)
         self.calc_subgrid()
 
@@ -28,8 +30,8 @@ class Grid:
         rows, columns = os.popen('stty size', 'r').read().split()
         rows, columns = int(rows), int(columns)
 
-        self.max_rows = min(math.floor(rows/2), len(self.matrix)*2) - 2
-        self.max_cols = min(int(math.floor(columns / 20)), len(self.matrix[0]))
+        self.max_rows = min(math.floor(rows/2), len(self.matrix)*2) - 1
+        self.max_cols = min(int(math.floor(columns / 21)), len(self.matrix[0]))
         self.clear()
 
         max_pos_y = (self.max_rows - 1) + self.displacement["y"]
@@ -78,8 +80,3 @@ class Grid:
             self.displace_y(1) 
         self.pos["y"] = new_pos_y
         self.selected["y"] += 1
-
-
-
-        #if (self.selected["x"] > len(self.subgrid[0])):
-        #    self.displace_sub_grid_left(len(self.subgrid[0]) - self.selected["x"])

@@ -51,16 +51,19 @@ class Frame:
 
     def draw_grid(self):
 
-        grid_to_string = "-" * 22 * self.grid.max_cols + "\n"
+        grid_to_string = "\n" + "-" * self.width + "\n"
 
-        for j in range(0, (len(self.grid.subgrid) )):
+        for j in range(0, (len(self.grid.subgrid))):
             row = []
             for i in range(0, (len(self.grid.subgrid[0]) )):
+                
                 text = "{:<20}".format(" " + str(self.grid.subgrid[j][i]))
+
                 if (j == self.grid.pos["y"] and i == self.grid.pos["x"]):
                     text = ansi.bg(text, 8)
                 row.append(text)
-            line_separator = "-" * 22 * self.grid.max_cols
+                
+            line_separator = "-" * self.width
             grid_to_string += "%s\n%s\n" %("|".join(row), line_separator)
         
 
