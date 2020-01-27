@@ -2,3 +2,4 @@
 __pycache__
 *.numbers
 sample.xlsx
+xls_cli.egg-info
