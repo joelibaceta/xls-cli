@@ -1,7 +1,8 @@
 import os
-import ansi
+
 import math
-from grid import Grid
+import xls_cli.ansi as ansi
+from xls_cli.grid import Grid
 from getkey import getkey, keys
 
 class Frame:

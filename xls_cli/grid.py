@@ -48,7 +48,6 @@ class Grid:
             self.subgrid.append(self.matrix[j][self.displacement["x"]:max_pos_x])
 
     def displace_x(self, increment):
-        
         new_value = self.displacement["x"] + increment
         self.log.write("displacing x " + str(new_value) + "\n")
  

@@ -1,5 +1,3 @@
-from xls_cli import XlsCli
-
-xls_cli = XlsCli()
-xls_cli.open_file("sample.xlsx")
-xls_cli.render()
+from xls_cli.runner import Runner
+ 
+Runner.open_file("sample.xlsx") 
