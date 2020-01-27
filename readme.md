@@ -1,3 +1,5 @@
+![](https://img.shields.io/pypi/pyversions/xls-cli)
+
 # XLS-CLI
 
 It is a simple python package to explore xls files in the terminal
