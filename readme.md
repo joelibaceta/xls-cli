@@ -12,7 +12,7 @@ It is a simple python package to explore xls files in the terminal
 
 ## Installation 
 
-```python3
+```bash
 pip3 install xls-cli
 ```
 
@@ -20,6 +20,6 @@ pip3 install xls-cli
 
 Just running 
 
-```
+```bash
 xls-cli your_file_path.xls
 ```
