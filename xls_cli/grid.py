@@ -32,40 +32,29 @@ class Grid:
 
         self.max_rows = min(math.floor(rows/2), len(self.matrix)*2) - 2
         self.max_cols = min(int(math.floor(columns / 20)), len(self.matrix[0]))
-
-        self.log.write("max_rows  " + str(self.max_rows) + "\n")
-        self.log.write("max_cols  " + str(self.max_cols) + "\n")
-
         self.clear()
 
         max_pos_y = (self.max_rows - 1) + self.displacement["y"]
         max_pos_x = (self.max_cols - 1) + self.displacement["x"]
-
-        self.log.write(" self.matrix " + str(len(self.matrix)) + "\n")
-        self.log.write(" self.matrix[0] " + str(len(self.matrix[0])) + "\n")
  
         for j in range(self.displacement["y"], min(max_pos_y, (self.sheet.nrows- 1))):
             self.subgrid.append(self.matrix[j][self.displacement["x"]:max_pos_x])
 
     def displace_x(self, increment):
-        new_value = self.displacement["x"] + increment
-        self.log.write("displacing x " + str(new_value) + "\n")
+        new_value = self.displacement["x"] + increment  
  
-        if (new_value <= (self.max_cols - 1) and new_value >= 0):
-            self.log.write("displaced x to " + str(new_value) + "\n")
+        if (new_value <= (self.max_cols - 1) and new_value >= 0):s
             self.displacement["x"] = new_value
         self.calc_subgrid()
 
     def displace_y(self, increment):
-        self.log.write("displacing y\n")
         new_value = self.displacement["y"] + increment
         if (new_value < (len(self.matrix) - 1) and new_value > 0):
             self.displacement["y"] = new_value
         self.calc_subgrid()
 
     def move_right(self):
-        new_pos_x = min(self.pos["x"] + 1, (self.max_cols-2)) 
-        self.log.write(str(self.pos["x"]) + " -> " + str(new_pos_x) + "\n")
+        new_pos_x = min(self.pos["x"] + 1, (self.max_cols-2))
         if new_pos_x == self.pos["x"]:
             self.displace_x(1) 
         self.pos["x"] = new_pos_x

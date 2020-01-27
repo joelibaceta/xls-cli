@@ -26,7 +26,7 @@ setup(
     keywords='xls terminal excel spreadsheet',
     entry_points={
         "console_scripts": [
-            'xls_cli=xls_cli.cli:main'
+            'xls-cli=xls_cli.cli:main'
         ]
     }
 )

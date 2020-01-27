@@ -1,0 +1,17 @@
+Metadata-Version: 1.2
+Name: xls-cli
+Version: 1.0.0
+Summary: It is a simple python package to explore xls files in the terminal
+Home-page: https://github.com/joelibaceta/xls-cli
+Author: Joel Ibaceta
+Author-email: mail@joelibaceta.com
+License: MIT
+Project-URL: Source, https://github.com/joelibaceta/xls-cli
+Project-URL: Tracker, https://github.com/joelibaceta/xls-cli/issues
+Description: A simple tool to open and explore a xls file using ascii characters simulated sheet in terminal
+Keywords: xls terminal excel spreadsheet
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent

@@ -1,0 +1,3 @@
+[console_scripts]
+xls-cli = xls_cli.cli:main
+

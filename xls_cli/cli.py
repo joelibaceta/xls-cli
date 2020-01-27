@@ -10,7 +10,7 @@ def main():
     EPILOG = ("\033[1;37mThanks for trying xls-cli!\033[0m")
 
     PARSER = argparse.ArgumentParser(prog='xls-cli', description=CLI_DESC, epilog=EPILOG)
-    PARSER.add_argument('file', type=str, dest='file', help='input file', action='store', required=True) 
+    PARSER.add_argument('file', type=str, help='input file') 
 
     ARGS = PARSER.parse_args()
 
