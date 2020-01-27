@@ -13,4 +13,4 @@ class Runner:
         frame = Frame(file_path)
         frame.grid = grid
         frame.render()
-        frame.loop()    
+        frame.loop()
