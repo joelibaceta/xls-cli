@@ -16,7 +16,7 @@ setup(
     },
     packages=find_packages(),
     include_package_data=True,
-    install_requires=['xlrd'],
+    install_requires=['xlrd', 'getkey'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Intended Audience :: Developers",
