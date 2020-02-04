@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="xls-cli",
-    version="1.0.1",
+    version="1.0.2",
     author="Joel Ibaceta",
     author_email="mail@joelibaceta.com",
     license='MIT',
